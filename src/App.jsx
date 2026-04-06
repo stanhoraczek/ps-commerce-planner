@@ -365,44 +365,36 @@ const VERTICALS = [...new Set(Object.values(SEASONAL_MODEL).map(c => c.vertical)
 // ============================================================================
 
 const RAW_PERFORMANCE_DATA = [
-  { rank: 1, page: "/gear/milwaukee-power-tool-m12-m18-deals-walmart-spring/", published: "2026-04-01", sessions: 11900, clicks: 8294, salesGross: 6685.87, commGross: 312.01, aov: 58.65 },
-  { rank: 2, page: "/gear/ego-battery-powered-power-tools-spring-sale-amazon/", published: "2026-03-22", sessions: 10007, clicks: 3088, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 3, page: "/gear/lowes-ego-days-sale-has-31-deals-on-battery-powered-yard-tools-up-to-200-off/", published: "2026-04-02", sessions: 7610, clicks: 2388, salesGross: 8743.08, commGross: 209.24, aov: 273.22 },
-  { rank: 4, page: "/reviews/best-solar-generators/", published: "2022-01-26", sessions: 3465, clicks: 1896, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 5, page: "/gear/greenworks-battery-powered-yard-tool-deals-mowers-blowers-trimmers-amazon/", published: "2026-03-30", sessions: 2765, clicks: 947, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 6, page: "/gear/apple-airpods-max-2-anc-headphones-h2-chip-hdr-amp-platform-architecture-interview/", published: "2026-03-31", sessions: 2470, clicks: 5, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 7, page: "/gear/ecoflow-big-spring-sale-deals-2026/", published: "2026-03-25", sessions: 2081, clicks: 407, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 8, page: "/gear/ugreen-spring-sale-docking-station-power-bank/", published: "2026-03-27", sessions: 1910, clicks: 513, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 9, page: "/gear/cobra-3d-printed-putters-enzo-pista-3dp-tour-golf-clubs/", published: "2026-03-31", sessions: 1402, clicks: 52, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 10, page: "/gear/best-deals-amazon-big-spring-sale-2026/", published: "2026-03-25", sessions: 1351, clicks: 344, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 11, page: "/gear/jbl-big-spring-sale-deals-2026/", published: "2026-03-27", sessions: 1054, clicks: 326, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 12, page: "/gear/best-monitor-deals-big-spring-sale-2026/", published: "2026-03-25", sessions: 928, clicks: 336, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 13, page: "/gear/apple-deals-ipad-airpods-macbook-big-spring-sale-deals/", published: "2026-03-25", sessions: 910, clicks: 128, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 14, page: "/gear/wiim-connected-multiroom-audio-streaming-amp-amazon-prime-big-spring-sale/", published: "2026-03-25", sessions: 903, clicks: 150, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 15, page: "/gear/apple-watch-big-spring-sale-2026/", published: "2026-03-25", sessions: 783, clicks: 251, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 16, page: "/gear/best-turntable-speakers/", published: "2023-06-22", sessions: 712, clicks: 361, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 17, page: "/gear/best-iems-for-gaming/", published: "2025-05-23", sessions: 704, clicks: 162, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 18, page: "/gear/iniu-charging-accessories-portable-power-bank-spring-deals/", published: "2026-03-30", sessions: 669, clicks: 210, salesGross: 222.54, commGross: 17.80, aov: 27.82 },
-  { rank: 19, page: "/gear/amazon-big-spring-sale-home-deals-26/", published: "2026-03-27", sessions: 666, clicks: 287, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 20, page: "/gear/sony-bravia-theater-home-audio-bar-sub-rear-speakers-mid-tier-led-tv-product-news/", published: "2026-03-25", sessions: 654, clicks: 39, salesGross: 1224.98, commGross: 36.75, aov: 408.33 },
-  { rank: 21, page: "/gear/best-pocket-microscopes/", published: "2024-11-06", sessions: 617, clicks: 175, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 22, page: "/gear/best-budget-electric-bikes/", published: "2022-12-14", sessions: 545, clicks: 252, salesGross: 570, commGross: 17.10, aov: 142.50 },
-  { rank: 23, page: "/gear/kitchenaid-artisan-plus-updated-tilt-head-stand-mixer-product-news/", published: "2026-03-30", sessions: 527, clicks: 40, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 24, page: "/gear/best-seat-cushions-for-office-chairs/", published: "2024-04-11", sessions: 486, clicks: 264, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 25, page: "/gear/waterdrop-g3p800-water-filter-system-review/", published: "2026-04-03", sessions: 437, clicks: 24, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 26, page: "/gear/best-home-wind-turbines/", published: "2022-08-04", sessions: 397, clicks: 154, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 27, page: "/gear/best-noise-cancelling-headphones-for-airplane-travel/", published: "2025-07-03", sessions: 377, clicks: 233, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 28, page: "/gear/best-electric-commuter-bikes/", published: "2024-02-28", sessions: 368, clicks: 115, salesGross: 26.93, commGross: 2.15, aov: 26.93 },
-  { rank: 29, page: "/gear/dewalt-big-spring-sale-deals-2026/", published: "2026-03-25", sessions: 354, clicks: 205, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 30, page: "/gear/portable-power-station-solar-generator-deals-amazon-spring-prime-day/", published: "2026-03-26", sessions: 346, clicks: 105, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 31, page: "/gear/best-iems-for-drummers/", published: "2025-08-25", sessions: 342, clicks: 167, salesGross: 0, commGross: 0, aov: 0 },
-  { rank: 32, page: "/gear/wayfair-grill-deals-flat-top-pizza-oven-spring-sale/", published: "2026-03-20", sessions: 245, clicks: 119, salesGross: 1164.93, commGross: 111.72, aov: 145.62 },
-  { rank: 33, page: "/gear/rei-end-of-season-running-shoe-clearance-deals-hoka-on-brooks/", published: "2026-03-09", sessions: 183, clicks: 7, salesGross: 1736.46, commGross: 121.55, aov: 289.41 },
-  { rank: 34, page: "/gear/best-folding-electric-bikes/", published: "2024-03-08", sessions: 128, clicks: 41, salesGross: 1558.99, commGross: 109.13, aov: 1558.99 },
-  { rank: 35, page: "/gear/best-chair-mats/", published: "2024-01-29", sessions: 146, clicks: 60, salesGross: 798.40, commGross: 65.47, aov: 798.40 },
-  { rank: 36, page: "/gear/best-attic-antennas/", published: "2022-09-17", sessions: 155, clicks: 82, salesGross: 125.70, commGross: 2.51, aov: 125.70 },
-  { rank: 37, page: "/gear/old-navy-season-end-clearance-shirts-pants-jackets/", published: "2026-03-12", sessions: 262, clicks: 0, salesGross: 27.93, commGross: 0.23, aov: 27.93 },
-  { rank: 38, page: "/gear/walmart-mar10-video-game-deals-switch-ps5-xbox/", published: "2026-03-10", sessions: 150, clicks: 17, salesGross: 162.69, commGross: 0.23, aov: 5.42 },
+  { rank: 1, page: "https://www.popsci.com/gear/milwaukee-power-tool-m12-m18-deals-walmart-spring", published: "2026-04-01T17:59:09.000Z", sessions: 15734, clicks: 11888, ctr: 0.76, salesGross: 0, commGross: 1481.26, aov: 0, rpm: 94.14, epc: 0.12, tags: "Deal/Sale", site: "popsci.com" },
+  { rank: 2, page: "https://www.popsci.com/gear/walmart-mar10-video-game-deals-switch-ps5-xbox", published: "2026-03-10T21:30:32.000Z", sessions: 42729, clicks: 10240, ctr: 0.24, salesGross: 0, commGross: 674.22, aov: 0, rpm: 15.78, epc: 0.07, tags: "Deal/Sale", site: "popsci.com" },
+  { rank: 3, page: "https://www.popsci.com/gear/rei-end-of-season-running-shoe-clearance-deals-hoka-on-brooks", published: "2026-03-09T17:47:01.000Z", sessions: 8910, clicks: 9384, ctr: 1.05, salesGross: 0, commGross: 887.82, aov: 0, rpm: 99.64, epc: 0.09, tags: "Deal/Sale", site: "popsci.com" },
+  { rank: 4, page: "https://www.popsci.com/gear/hisense-tv-clearance-mini-led-amazon", published: "2026-03-16T16:34:48.000Z", sessions: 29452, clicks: 6426, ctr: 0.22, salesGross: 0, commGross: 0, aov: 0, rpm: 0, epc: 0, tags: "Deal/Sale", site: "popsci.com" },
+  { rank: 5, page: "https://www.popsci.com/reviews/best-solar-generators", published: "2025-12-09T14:45:05.000Z", sessions: 5294, clicks: 4399, ctr: 0.83, salesGross: 0, commGross: 0, aov: 0, rpm: 0, epc: 0, tags: "Generators,Buying Guide,Power Stations + Batteries + Chargers,Buying Guide,Technology + Computing", site: "popsci.com" },
+  { rank: 6, page: "https://www.popsci.com/gear/ego-battery-powered-power-tools-spring-sale-amazon", published: "2026-03-22T23:45:01.000Z", sessions: 9439, clicks: 3448, ctr: 0.37, salesGross: 0, commGross: 0, aov: 0, rpm: 0, epc: 0, tags: "Deal/Sale", site: "popsci.com" },
+  { rank: 7, page: "https://www.popsci.com/gear/lowes-dewalt-deal-days-power-tool-sale-2026", published: "2026-03-05T14:26:35.000Z", sessions: 9835, clicks: 3039, ctr: 0.31, salesGross: 0, commGross: 66.4, aov: 0, rpm: 6.75, epc: 0.02, tags: "Deal/Sale", site: "popsci.com" },
+  { rank: 8, page: "https://www.popsci.com/gear/lowes-ego-days-sale-has-31-deals-on-battery-powered-yard-tools-up-to-200-off", published: "2026-04-02T16:06:27.000Z", sessions: 7085, clicks: 2696, ctr: 0.38, salesGross: 0, commGross: 388.71, aov: 0, rpm: 54.86, epc: 0.14, tags: "Deal/Sale", site: "popsci.com" },
+  { rank: 9, page: "https://www.popsci.com/gear/wayfair-grill-deals-flat-top-pizza-oven-spring-sale", published: "2026-03-20T20:33:03.000Z", sessions: 2071, clicks: 1452, ctr: 0.7, salesGross: 0, commGross: 173.39, aov: 0, rpm: 83.72, epc: 0.12, tags: "Deal/Sale", site: "popsci.com" },
+  { rank: 10, page: "https://www.popsci.com/gear/greenworks-battery-powered-yard-tool-deals-mowers-blowers-trimmers-amazon", published: "2026-03-30T17:47:42.000Z", sessions: 2526, clicks: 1048, ctr: 0.41, salesGross: 0, commGross: 0, aov: 0, rpm: 0, epc: 0, tags: "Deal/Sale", site: "popsci.com" },
+  { rank: 11, page: "https://www.popsci.com/gear/best-turntable-speakers", published: "2024-11-20T21:07:10.000Z", sessions: 1182, clicks: 914, ctr: 0.77, salesGross: 0, commGross: 0, aov: 0, rpm: 0, epc: 0, tags: "Turntables,Buying Guide,Audio,Technology + Computing", site: "popsci.com" },
+  { rank: 12, page: "https://www.popsci.com/gear/best-budget-electric-bikes", published: "2025-05-12T18:15:49.000Z", sessions: 1295, clicks: 639, ctr: 0.49, salesGross: 0, commGross: 59.61, aov: 0, rpm: 46.03, epc: 0.09, tags: "Buying Guide,Electric Bikes", site: "popsci.com" },
+  { rank: 13, page: "https://www.popsci.com/gear/best-seat-cushions-for-office-chairs", published: "2024-06-04T17:05:18.000Z", sessions: 902, clicks: 603, ctr: 0.67, salesGross: 0, commGross: 0, aov: 0, rpm: 0, epc: 0, tags: "Seating,Buying Guide,Home Furnishings", site: "popsci.com" },
+  { rank: 14, page: "https://www.popsci.com/gear/ugreen-spring-sale-docking-station-power-bank", published: "2026-03-27T15:50:53.000Z", sessions: 1169, clicks: 562, ctr: 0.48, salesGross: 0, commGross: 0, aov: 0, rpm: 0, epc: 0, tags: "Deal/Sale", site: "popsci.com" },
+  { rank: 15, page: "https://www.popsci.com/gear/best-noise-cancelling-headphones-for-airplane-travel", published: "2026-02-20T15:20:25.000Z", sessions: 669, clicks: 538, ctr: 0.8, salesGross: 0, commGross: 0, aov: 0, rpm: 0, epc: 0, tags: "Buying Guide", site: "popsci.com" },
+  { rank: 16, page: "https://www.popsci.com/gear/ecoflow-big-spring-sale-deals-2026", published: "2026-03-25T13:09:28.000Z", sessions: 1579, clicks: 433, ctr: 0.27, salesGross: 0, commGross: 0, aov: 0, rpm: 0, epc: 0, tags: "Deal/Sale", site: "popsci.com" },
+  { rank: 17, page: "https://www.popsci.com/gear/best-home-wind-turbines", published: "2024-07-09T19:35:35.000Z", sessions: 1049, clicks: 432, ctr: 0.41, salesGross: 0, commGross: 0, aov: 0, rpm: 0, epc: 0, tags: "Buying Guide,Solar Panels,Power Stations", site: "popsci.com" },
+  { rank: 18, page: "https://www.popsci.com/gear/best-iems-for-gaming", published: "2025-05-23T14:00:00.000Z", sessions: 680, clicks: 420, ctr: 0.62, salesGross: 0, commGross: 0, aov: 0, rpm: 0, epc: 0, tags: "Buying Guide", site: "popsci.com" },
+  { rank: 19, page: "https://www.popsci.com/reviews/best-outdoor-tv-antennas", published: "2025-11-26T13:31:18.000Z", sessions: 435, clicks: 386, ctr: 0.89, salesGross: 0, commGross: 0, aov: 0, rpm: 0, epc: 0, tags: "TV + Home Theater,Antennas,Buying Guide", site: "popsci.com" },
+  { rank: 20, page: "https://www.popsci.com/gear/best-pocket-microscopes", published: "2024-11-06T14:00:00.000Z", sessions: 662, clicks: 384, ctr: 0.58, salesGross: 0, commGross: 0, aov: 0, rpm: 0, epc: 0, tags: "Buying Guide,Microscopes,Science + Education", site: "popsci.com" },
+  { rank: 21, page: "https://www.popsci.com/gear/best-deals-amazon-big-spring-sale-2026", published: "2026-03-26T16:06:42.000Z", sessions: 1950, clicks: 383, ctr: 0.2, salesGross: 0, commGross: 0, aov: 0, rpm: 0, epc: 0, tags: "Deal/Sale", site: "popsci.com" },
+  { rank: 22, page: "https://www.popsci.com/gear/best-monitor-deals-big-spring-sale-2026", published: "2026-03-25T12:19:07.000Z", sessions: 820, clicks: 378, ctr: 0.46, salesGross: 0, commGross: 0, aov: 0, rpm: 0, epc: 0, tags: "Deal/Sale", site: "popsci.com" },
+  { rank: 23, page: "https://www.popsci.com/gear/jbl-big-spring-sale-deals-2026", published: "2026-03-27T20:55:52.000Z", sessions: 855, clicks: 352, ctr: 0.41, salesGross: 0, commGross: 0, aov: 0, rpm: 0, epc: 0, tags: "Deal/Sale", site: "popsci.com" },
+  { rank: 24, page: "https://www.popsci.com/reviews/best-wireless-surround-sound-systems", published: "2025-07-25T19:55:34.000Z", sessions: 535, clicks: 335, ctr: 0.63, salesGross: 0, commGross: 0, aov: 0, rpm: 0, epc: 0, tags: "Buying Guide,Audio", site: "popsci.com" },
+  { rank: 25, page: "https://www.popsci.com/gear/best-iems-for-drummers", published: "2025-08-25T12:55:00.000Z", sessions: 425, clicks: 331, ctr: 0.78, salesGross: 0, commGross: 0, aov: 0, rpm: 0, epc: 0, tags: "Buying Guide", site: "popsci.com" },
+  { rank: 26, page: "https://www.popsci.com/gear/wolfbox-trail-season-deals-jump-starter-dash-cam", published: "2026-03-17T21:43:18.000Z", sessions: 1352, clicks: 308, ctr: 0.23, salesGross: 0, commGross: 7.11, aov: 0, rpm: 5.26, epc: 0.02, tags: "Deal/Sale", site: "popsci.com" },
+  { rank: 27, page: "https://www.popsci.com/gear/best-power-lift-recliners", published: "2025-07-15T02:37:34.000Z", sessions: 383, clicks: 304, ctr: 0.79, salesGross: 0, commGross: 0, aov: 0, rpm: 0, epc: 0, tags: "Seating,Buying Guide,Home Furnishings", site: "popsci.com" },
+  { rank: 28, page: "https://www.popsci.com/gear/best-electric-commuter-bikes", published: "2025-10-30T14:15:31.000Z", sessions: 672, clicks: 286, ctr: 0.43, salesGross: 0, commGross: 8.75, aov: 0, rpm: 13.02, epc: 0.03, tags: "Buying Guide,Electric Bikes", site: "popsci.com" },
+  { rank: 29, page: "https://www.popsci.com/gear/best-portable-saunas", published: "2025-05-21T21:27:59.000Z", sessions: 324, clicks: 281, ctr: 0.87, salesGross: 0, commGross: 0, aov: 0, rpm: 0, epc: 0, tags: "Buying Guide,Saunas", site: "popsci.com" },
+  { rank: 30, page: "https://www.popsci.com/gear/apple-watch-big-spring-sale-2026", published: "2026-03-25T12:28:14.000Z", sessions: 696, clicks: 271, ctr: 0.39, salesGross: 0, commGross: 0, aov: 0, rpm: 0, epc: 0, tags: "Deal/Sale", site: "popsci.com" },
 ];
 
 // ============================================================================
@@ -633,19 +625,64 @@ export default function PSCommercePlanner() {
   const [newCatVertical, setNewCatVertical] = useState('');
   const [newCatKeywords, setNewCatKeywords] = useState('');
   const [sortBy, setSortBy] = useState('sessions');
+  const [siteFilter, setSiteFilter] = useState('All');
+  const [showLimit, setShowLimit] = useState(100);
+  const [contentTypeFilter, setContentTypeFilter] = useState('All');
+
+  // ---- Classify content type from tags ----
+  const getContentType = (tags) => {
+    if (!tags) return 'Other';
+    if (tags.includes('Deal/Sale')) return 'Deal/Sale';
+    if (tags.includes('Buying Guide')) return 'Buying Guide';
+    if (tags.includes('Feature')) return 'Feature';
+    if (tags.includes('Collection/Listicle')) return 'Collection/Listicle';
+    return 'Other';
+  };
 
   // ---- Classified performance data ----
   const classifiedPerf = useMemo(() => {
     return perfData.map(row => {
       const cls = classifyPage(row.page);
-      return { ...row, ...cls, clickRate: row.sessions > 0 ? row.clicks / row.sessions : 0, convRate: row.clicks > 0 ? (row.salesGross > 0 ? 1 : 0) : 0 };
+      const site = row.site || (() => { try { return new URL(row.page).hostname.replace('www.', ''); } catch { return 'unknown'; } })();
+      const contentType = getContentType(row.tags);
+      return { ...row, ...cls, site, contentType, clickRate: row.sessions > 0 ? row.clicks / row.sessions : 0, convRate: row.clicks > 0 ? (row.commGross > 0 ? 1 : 0) : 0 };
     });
   }, [perfData]);
+
+  // ---- Available sites ----
+  const availableSites = useMemo(() => {
+    const sites = new Set(classifiedPerf.map(r => r.site).filter(Boolean));
+    return ['All', ...Array.from(sites).sort()];
+  }, [classifiedPerf]);
+
+  const CONTENT_TYPES = ['All', 'Deal/Sale', 'Buying Guide', 'Feature', 'Collection/Listicle', 'Other'];
+
+  // ---- Filtered by site ----
+  const siteFiltered = useMemo(() => {
+    let filtered = classifiedPerf;
+    if (siteFilter !== 'All') filtered = filtered.filter(r => r.site === siteFilter);
+    if (contentTypeFilter !== 'All') filtered = filtered.filter(r => r.contentType === contentTypeFilter);
+    return filtered;
+  }, [classifiedPerf, siteFilter, contentTypeFilter]);
+
+  // ---- Aggregate by site ----
+  const siteAgg = useMemo(() => {
+    const agg = {};
+    classifiedPerf.forEach(row => {
+      const s = row.site || 'unknown';
+      if (!agg[s]) agg[s] = { sessions: 0, clicks: 0, commGross: 0, articles: 0 };
+      agg[s].sessions += row.sessions;
+      agg[s].clicks += row.clicks;
+      agg[s].commGross += row.commGross;
+      agg[s].articles += 1;
+    });
+    return agg;
+  }, [classifiedPerf]);
 
   // ---- Aggregate by vertical ----
   const verticalAgg = useMemo(() => {
     const agg = {};
-    classifiedPerf.forEach(row => {
+    siteFiltered.forEach(row => {
       const v = row.vertical;
       if (!agg[v]) agg[v] = { sessions: 0, clicks: 0, salesGross: 0, commGross: 0, articles: 0, converting: 0 };
       agg[v].sessions += row.sessions;
@@ -656,12 +693,12 @@ export default function PSCommercePlanner() {
       if (row.commGross > 0) agg[v].converting += 1;
     });
     return agg;
-  }, [classifiedPerf]);
+  }, [siteFiltered]);
 
   // ---- Aggregate by category ----
   const categoryAgg = useMemo(() => {
     const agg = {};
-    classifiedPerf.forEach(row => {
+    siteFiltered.forEach(row => {
       const c = row.category;
       if (!agg[c]) agg[c] = { sessions: 0, clicks: 0, salesGross: 0, commGross: 0, articles: 0, vertical: row.vertical };
       agg[c].sessions += row.sessions;
@@ -671,15 +708,15 @@ export default function PSCommercePlanner() {
       agg[c].articles += 1;
     });
     return agg;
-  }, [classifiedPerf]);
+  }, [siteFiltered]);
 
   // ---- Totals ----
   const totals = useMemo(() => {
-    return classifiedPerf.reduce((t, r) => ({
+    return siteFiltered.reduce((t, r) => ({
       sessions: t.sessions + r.sessions, clicks: t.clicks + r.clicks,
       salesGross: t.salesGross + r.salesGross, commGross: t.commGross + r.commGross, articles: t.articles + 1
     }), { sessions: 0, clicks: 0, salesGross: 0, commGross: 0, articles: 0 });
-  }, [classifiedPerf]);
+  }, [siteFiltered]);
 
   // ---- Recommendations: Cover Now (high seasonal demand) ----
   const coverNow = useMemo(() => {
@@ -733,7 +770,7 @@ export default function PSCommercePlanner() {
   // ---- Revenue Projections ----
   const projections = useMemo(() => {
     // Calculate actual conversion metrics from data
-    const convertingArticles = classifiedPerf.filter(r => r.commGross > 0);
+    const convertingArticles = siteFiltered.filter(r => r.commGross > 0);
     const avgCommPerConvertingArticle = convertingArticles.length > 0 ? convertingArticles.reduce((s, r) => s + r.commGross, 0) / convertingArticles.length : 50;
     const avgSessionsPerArticle = totals.articles > 0 ? totals.sessions / totals.articles : 500;
     const overallClickRate = totals.sessions > 0 ? totals.clicks / totals.sessions : 0.3;
@@ -758,33 +795,79 @@ export default function PSCommercePlanner() {
 
   // ---- Sorted performance data ----
   const sortedPerf = useMemo(() => {
-    const filtered = verticalFilter === 'All' ? [...classifiedPerf] : classifiedPerf.filter(r => r.vertical === verticalFilter);
+    let filtered = [...siteFiltered];
+    if (verticalFilter !== 'All') filtered = filtered.filter(r => r.vertical === verticalFilter);
     return filtered.sort((a, b) => {
       if (sortBy === 'sessions') return b.sessions - a.sessions;
       if (sortBy === 'clicks') return b.clicks - a.clicks;
       if (sortBy === 'commission') return b.commGross - a.commGross;
       if (sortBy === 'clickRate') return b.clickRate - a.clickRate;
       if (sortBy === 'sales') return b.salesGross - a.salesGross;
+      if (sortBy === 'rpm') return (b.rpm || 0) - (a.rpm || 0);
       return b.sessions - a.sessions;
     });
-  }, [classifiedPerf, verticalFilter, sortBy]);
+  }, [siteFiltered, verticalFilter, sortBy]);
+
+  // ---- Stale content opportunities (old articles still driving clicks but $0 earnings) ----
+  const staleOpportunities = useMemo(() => {
+    return siteFiltered.filter(r => {
+      const mod = r.published || '';
+      const isOld = mod.includes('2024') || mod.includes('2023') || mod.includes('2022') || mod.includes('2021');
+      return r.clicks > 50 && isOld;
+    }).sort((a, b) => b.clicks - a.clicks).slice(0, 20);
+  }, [siteFiltered]);
+
+  // ---- High-click zero-earnings (missed revenue) ----
+  const missedRevenue = useMemo(() => {
+    return siteFiltered.filter(r => r.clicks > 100 && r.commGross === 0).sort((a, b) => b.clicks - a.clicks).slice(0, 20);
+  }, [siteFiltered]);
 
   // ---- Handle new performance CSV upload ----
+  // Supports both old format (Sessions, Sales Gross, Commissions Gross, AOV)
+  // and new expanded format (Pageviews, Clicks, CTR, Earnings, RPM, EPC, Page last modified, Tags)
   const handlePerfUpload = (data) => {
+    const parseMoney = (v) => { if (!v) return 0; return parseFloat(String(v).replace(/[$,]/g, '')) || 0; };
+    const parseNum = (v) => { if (!v) return 0; return parseInt(String(v).replace(/,/g, '')) || 0; };
+    const parseFloat2 = (v) => { if (!v) return 0; return parseFloat(String(v).replace(/,/g, '')) || 0; };
+
+    // Detect format by checking for new column names
+    const hasNewFormat = data[0] && ('Pageviews' in data[0] || 'Earnings' in data[0] || 'RPM' in data[0]);
+
     const parsed = data.map((row, i) => {
-      const parseMoney = (v) => { if (!v) return 0; return parseFloat(String(v).replace(/[$,]/g, '')) || 0; };
-      const parseNum = (v) => { if (!v) return 0; return parseInt(String(v).replace(/,/g, '')) || 0; };
-      return {
-        rank: i + 1,
-        page: row['Page'] || row['page'] || '',
-        published: row['Published Date'] || row['published'] || '',
-        sessions: parseNum(row['Sessions'] || row['sessions']),
-        clicks: parseNum(row['Clicks'] || row['clicks']),
-        salesGross: parseMoney(row['Sales Gross'] || row['sales_gross']),
-        commGross: parseMoney(row['Commissions Gross'] || row['commissions_gross']),
-        aov: parseMoney(row['AOV'] || row['aov'])
-      };
-    }).filter(r => r.page);
+      if (hasNewFormat) {
+        // New expanded format: Page,Pageviews,Clicks,CTR,Earnings,RPM,EPC,Page last modified,Tags
+        const page = row['Page'] || '';
+        return {
+          rank: i + 1,
+          page: page,
+          published: row['Page last modified'] || '',
+          sessions: parseNum(row['Pageviews']),
+          clicks: parseNum(row['Clicks']),
+          ctr: parseFloat2(row['CTR']),
+          salesGross: 0,
+          commGross: parseMoney(row['Earnings']),
+          aov: 0,
+          rpm: parseFloat2(row['RPM']),
+          epc: parseFloat2(row['EPC']),
+          tags: row['Tags'] || '',
+          site: (() => { try { return new URL(page).hostname.replace('www.', ''); } catch { return 'unknown'; } })()
+        };
+      } else {
+        // Old format: Page, Published Date, Sessions, Clicks, Sales Gross, Commissions Gross, AOV
+        return {
+          rank: i + 1,
+          page: row['Page'] || row['page'] || '',
+          published: row['Published Date'] || row['published'] || '',
+          sessions: parseNum(row['Sessions'] || row['sessions']),
+          clicks: parseNum(row['Clicks'] || row['clicks']),
+          salesGross: parseMoney(row['Sales Gross'] || row['sales_gross']),
+          commGross: parseMoney(row['Commissions Gross'] || row['commissions_gross']),
+          aov: parseMoney(row['AOV'] || row['aov']),
+          tags: '',
+          site: 'popsci.com'
+        };
+      }
+    }).filter(r => r.page && r.page.startsWith('http'));
     if (parsed.length > 0) {
       setPerfData(parsed);
       setPerfDataTimestamp(new Date().toISOString());
@@ -831,19 +914,28 @@ export default function PSCommercePlanner() {
 
   const renderDashboard = () => (
     <div>
+      {/* Site + content type filter bar */}
+      {availableSites.length > 2 && (
+        <div style={{ display: 'flex', gap: 12, marginBottom: 16, alignItems: 'center' }}>
+          <select style={S.select} value={siteFilter} onChange={e => setSiteFilter(e.target.value)}>
+            {availableSites.map(s => <option key={s} value={s}>{s === 'All' ? 'All Sites' : s}</option>)}
+          </select>
+          <select style={S.select} value={contentTypeFilter} onChange={e => setContentTypeFilter(e.target.value)}>
+            {CONTENT_TYPES.map(t => <option key={t} value={t}>{t === 'All' ? 'All Content Types' : t}</option>)}
+          </select>
+          <div style={{ fontSize: 11, color: 'rgba(229,231,235,0.4)' }}>{totals.articles.toLocaleString()} articles in view</div>
+        </div>
+      )}
+
       {/* Top-line metrics */}
       <div style={S.metricRow}>
         <div style={S.metric('#34d399')}>
           <div style={S.metricValue('#34d399')}>{fmtDollars(totals.commGross)}</div>
-          <div style={S.metricLabel}>Total Commission (14d)</div>
-        </div>
-        <div style={S.metric('#fbbf24')}>
-          <div style={S.metricValue('#fbbf24')}>{fmtDollars(totals.salesGross)}</div>
-          <div style={S.metricLabel}>Gross Sales (14d)</div>
+          <div style={S.metricLabel}>Total Earnings</div>
         </div>
         <div style={S.metric('#60a5fa')}>
           <div style={S.metricValue('#60a5fa')}>{fmt(totals.sessions)}</div>
-          <div style={S.metricLabel}>Total Sessions</div>
+          <div style={S.metricLabel}>Total Pageviews</div>
         </div>
         <div style={S.metric('#a78bfa')}>
           <div style={S.metricValue('#a78bfa')}>{fmt(totals.clicks)}</div>
@@ -853,11 +945,45 @@ export default function PSCommercePlanner() {
           <div style={S.metricValue('#f472b6')}>{fmtPct(totals.sessions > 0 ? totals.clicks / totals.sessions : 0)}</div>
           <div style={S.metricLabel}>Click-through Rate</div>
         </div>
+        <div style={S.metric('#fbbf24')}>
+          <div style={S.metricValue('#fbbf24')}>{totals.sessions > 0 ? '$' + (totals.commGross / totals.sessions * 1000).toFixed(2) : '$0'}</div>
+          <div style={S.metricLabel}>Revenue per 1k PVs (RPM)</div>
+        </div>
       </div>
+
+      {/* Site breakdown (if multi-site) */}
+      {Object.keys(siteAgg).length > 1 && siteFilter === 'All' && (
+        <div style={S.card}>
+          <div style={S.cardTitle}>Earnings by Site</div>
+          <table style={S.table}>
+            <thead>
+              <tr>
+                <th style={S.th}>Site</th>
+                <th style={{...S.th, textAlign: 'right'}}>Articles</th>
+                <th style={{...S.th, textAlign: 'right'}}>Pageviews</th>
+                <th style={{...S.th, textAlign: 'right'}}>Clicks</th>
+                <th style={{...S.th, textAlign: 'right'}}>Earnings</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.entries(siteAgg).sort((a, b) => b[1].commGross - a[1].commGross).map(([site, d]) => (
+                <tr key={site} style={{ cursor: 'pointer' }} onClick={() => setSiteFilter(site)}>
+                  <td style={S.td}><span style={{ fontWeight: 600, color: '#60a5fa' }}>{site}</span></td>
+                  <td style={{...S.td, textAlign: 'right', fontFamily: 'monospace'}}>{d.articles.toLocaleString()}</td>
+                  <td style={{...S.td, textAlign: 'right', fontFamily: 'monospace'}}>{fmt(d.sessions)}</td>
+                  <td style={{...S.td, textAlign: 'right', fontFamily: 'monospace'}}>{fmt(d.clicks)}</td>
+                  <td style={{...S.td, textAlign: 'right', fontFamily: 'monospace', color: d.commGross > 0 ? '#34d399' : 'rgba(229,231,235,0.3)'}}>{fmtDollars(d.commGross)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div style={{ fontSize: 10, color: 'rgba(229,231,235,0.3)', marginTop: 8 }}>Click a site name to filter</div>
+        </div>
+      )}
 
       {/* Revenue by vertical */}
       <div style={S.card}>
-        <div style={S.cardTitle}>Revenue by Vertical</div>
+        <div style={S.cardTitle}>Revenue by Vertical{siteFilter !== 'All' ? ` — ${siteFilter}` : ''}</div>
         <table style={S.table}>
           <thead>
             <tr>
@@ -886,39 +1012,62 @@ export default function PSCommercePlanner() {
         </table>
       </div>
 
-      {/* Quick wins */}
-      <div style={S.card}>
-        <div style={S.cardTitle}>Quick Revenue Wins</div>
-        <div style={{ fontSize: 13, color: 'rgba(229,231,235,0.7)', lineHeight: 1.7 }}>
-          {(() => {
-            const highTrafficNoRev = classifiedPerf.filter(r => r.sessions > 500 && r.commGross === 0 && r.clicks > 100).sort((a, b) => b.sessions - a.sessions).slice(0, 5);
-            const highConv = classifiedPerf.filter(r => r.commGross > 0).sort((a, b) => (b.commGross / Math.max(b.sessions, 1)) - (a.commGross / Math.max(a.sessions, 1))).slice(0, 3);
-
-            return (
-              <div>
-                <div style={{ marginBottom: 16 }}>
-                  <div style={{ fontSize: 12, fontWeight: 600, color: '#f472b6', marginBottom: 8 }}>High-traffic articles with clicks but $0 commission — check affiliate links:</div>
-                  {highTrafficNoRev.map((r, i) => (
-                    <div key={i} style={{ padding: '6px 0', borderBottom: '1px solid rgba(255,255,255,0.04)', display: 'flex', justifyContent: 'space-between' }}>
-                      <span style={{ color: '#e5e7eb' }}>{getSlug(r.page)}</span>
-                      <span style={{ fontFamily: 'monospace', color: 'rgba(251,191,36,0.7)' }}>{fmt(r.sessions)} sessions / {fmt(r.clicks)} clicks</span>
-                    </div>
-                  ))}
-                </div>
-                <div>
-                  <div style={{ fontSize: 12, fontWeight: 600, color: '#34d399', marginBottom: 8 }}>Highest commission per session — double down on these:</div>
-                  {highConv.map((r, i) => (
-                    <div key={i} style={{ padding: '6px 0', borderBottom: '1px solid rgba(255,255,255,0.04)', display: 'flex', justifyContent: 'space-between' }}>
-                      <span style={{ color: '#e5e7eb' }}>{getSlug(r.page)}</span>
-                      <span style={{ fontFamily: 'monospace', color: '#34d399' }}>{fmtDollars(r.commGross)} comm / {fmtDollars(r.commGross / Math.max(r.sessions, 1) * 1000)}/1k sessions</span>
-                    </div>
-                  ))}
-                </div>
+      {/* Quick wins: Missed revenue */}
+      {missedRevenue.length > 0 && (
+        <div style={S.card}>
+          <div style={S.cardTitle}>Missed Revenue — High Clicks, $0 Earnings ({missedRevenue.length} articles)</div>
+          <div style={{ fontSize: 12, color: 'rgba(229,231,235,0.5)', marginBottom: 12 }}>Articles driving clicks but earning nothing. Check affiliate links, expired deals, or missing retailer data.</div>
+          {missedRevenue.slice(0, 10).map((r, i) => (
+            <div key={i} style={{ padding: '6px 0', borderBottom: '1px solid rgba(255,255,255,0.04)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 12, color: '#e5e7eb', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{getSlug(r.page)}</div>
+                <div style={{ fontSize: 10, color: 'rgba(229,231,235,0.3)' }}>{r.site || ''} {r.contentType !== 'Other' ? `· ${r.contentType}` : ''}</div>
               </div>
-            );
-          })()}
+              <div style={{ fontFamily: 'monospace', fontSize: 11, color: '#f472b6', whiteSpace: 'nowrap', marginLeft: 12 }}>
+                {fmt(r.clicks)} clicks · {fmt(r.sessions)} pvs · CTR {fmtPct(r.clickRate)}
+              </div>
+            </div>
+          ))}
         </div>
+      )}
+
+      {/* Quick wins: Top earners */}
+      <div style={S.card}>
+        <div style={S.cardTitle}>Top Earners — Double Down on These</div>
+        {(() => {
+          const topEarners = siteFiltered.filter(r => r.commGross > 0).sort((a, b) => b.commGross - a.commGross).slice(0, 10);
+          return topEarners.map((r, i) => (
+            <div key={i} style={{ padding: '6px 0', borderBottom: '1px solid rgba(255,255,255,0.04)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 12, color: '#e5e7eb', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{getSlug(r.page)}</div>
+                <div style={{ fontSize: 10, color: 'rgba(229,231,235,0.3)' }}>{r.site || ''} · {r.vertical}</div>
+              </div>
+              <div style={{ fontFamily: 'monospace', fontSize: 11, color: '#34d399', whiteSpace: 'nowrap', marginLeft: 12 }}>
+                {fmtDollars(r.commGross)} · {fmt(r.clicks)} clicks
+              </div>
+            </div>
+          ));
+        })()}
       </div>
+
+      {/* Stale content opportunities */}
+      {staleOpportunities.length > 0 && (
+        <div style={S.card}>
+          <div style={S.cardTitle}>Stale Content Still Driving Traffic ({staleOpportunities.length} articles)</div>
+          <div style={{ fontSize: 12, color: 'rgba(229,231,235,0.5)', marginBottom: 12 }}>Articles last updated 2024 or earlier that still get clicks. Refresh these for quick revenue wins.</div>
+          {staleOpportunities.slice(0, 10).map((r, i) => (
+            <div key={i} style={{ padding: '6px 0', borderBottom: '1px solid rgba(255,255,255,0.04)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 12, color: '#e5e7eb', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{getSlug(r.page)}</div>
+                <div style={{ fontSize: 10, color: 'rgba(229,231,235,0.3)' }}>Last updated: {r.published ? r.published.slice(0, 10) : 'unknown'}</div>
+              </div>
+              <div style={{ fontFamily: 'monospace', fontSize: 11, color: r.commGross > 0 ? '#34d399' : '#fbbf24', whiteSpace: 'nowrap', marginLeft: 12 }}>
+                {fmt(r.clicks)} clicks · {r.commGross > 0 ? fmtDollars(r.commGross) : '$0 earnings'}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 
@@ -928,55 +1077,74 @@ export default function PSCommercePlanner() {
 
   const renderPerformance = () => (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-        <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, flexWrap: 'wrap', gap: 8 }}>
+        <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
+          {availableSites.length > 2 && (
+            <select style={S.select} value={siteFilter} onChange={e => setSiteFilter(e.target.value)}>
+              {availableSites.map(s => <option key={s} value={s}>{s === 'All' ? 'All Sites' : s}</option>)}
+            </select>
+          )}
           <select style={S.select} value={verticalFilter} onChange={e => setVerticalFilter(e.target.value)}>
             <option value="All">All Verticals</option>
             {VERTICALS.map(v => <option key={v} value={v}>{v}</option>)}
           </select>
+          <select style={S.select} value={contentTypeFilter} onChange={e => setContentTypeFilter(e.target.value)}>
+            {CONTENT_TYPES.map(t => <option key={t} value={t}>{t === 'All' ? 'All Types' : t}</option>)}
+          </select>
           <select style={S.select} value={sortBy} onChange={e => setSortBy(e.target.value)}>
-            <option value="sessions">Sort: Sessions</option>
+            <option value="sessions">Sort: Pageviews</option>
             <option value="clicks">Sort: Clicks</option>
-            <option value="commission">Sort: Commission</option>
+            <option value="commission">Sort: Earnings</option>
             <option value="clickRate">Sort: CTR</option>
-            <option value="sales">Sort: Sales</option>
+            <option value="rpm">Sort: RPM</option>
           </select>
         </div>
-        <div style={{ fontSize: 12, color: 'rgba(229,231,235,0.4)' }}>{sortedPerf.length} articles</div>
+        <div style={{ fontSize: 12, color: 'rgba(229,231,235,0.4)' }}>
+          Showing {Math.min(showLimit, sortedPerf.length)} of {sortedPerf.length.toLocaleString()} articles
+        </div>
       </div>
 
-      <CSVUploader onDataLoaded={handlePerfUpload} label="Upload new performance CSV to replace data" />
+      <CSVUploader onDataLoaded={handlePerfUpload} label="Upload performance CSV (supports both old and new format)" />
 
       <div style={{ marginTop: 16, overflowX: 'auto' }}>
         <table style={S.table}>
           <thead>
             <tr>
               <th style={S.th}>Article</th>
-              <th style={S.th}>Vertical</th>
-              <th style={{...S.th, textAlign: 'right'}}>Sessions</th>
+              <th style={S.th}>Category</th>
+              <th style={{...S.th, textAlign: 'right'}}>Pageviews</th>
               <th style={{...S.th, textAlign: 'right'}}>Clicks</th>
               <th style={{...S.th, textAlign: 'right'}}>CTR</th>
-              <th style={{...S.th, textAlign: 'right'}}>Sales</th>
-              <th style={{...S.th, textAlign: 'right'}}>Commission</th>
+              <th style={{...S.th, textAlign: 'right'}}>Earnings</th>
+              <th style={{...S.th, textAlign: 'right'}}>RPM</th>
             </tr>
           </thead>
           <tbody>
-            {sortedPerf.slice(0, 50).map((r, i) => (
+            {sortedPerf.slice(0, showLimit).map((r, i) => (
               <tr key={i} style={{ background: r.commGross > 0 ? 'rgba(52,211,153,0.03)' : 'transparent' }}>
-                <td style={{...S.td, maxWidth: 300}}>
+                <td style={{...S.td, maxWidth: 320}}>
                   <div style={{ fontSize: 12, fontWeight: 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{getSlug(r.page)}</div>
-                  <div style={{ fontSize: 10, color: 'rgba(229,231,235,0.3)', marginTop: 2 }}>{r.published}</div>
+                  <div style={{ fontSize: 10, color: 'rgba(229,231,235,0.3)', marginTop: 2 }}>
+                    {r.site && r.site !== 'popsci.com' ? <span style={{ color: '#60a5fa' }}>{r.site} · </span> : ''}
+                    {r.published ? r.published.slice(0, 10) : ''}
+                    {r.contentType !== 'Other' ? ` · ${r.contentType}` : ''}
+                  </div>
                 </td>
-                <td style={S.td}><span style={S.badge(getDemandColor(SEASONAL_MODEL[r.category]?.seasonal?.[currentMonth] || 5).bg, getDemandColor(SEASONAL_MODEL[r.category]?.seasonal?.[currentMonth] || 5).text)}>{r.vertical}</span></td>
+                <td style={S.td}><span style={S.badge(getDemandColor(SEASONAL_MODEL[r.category]?.seasonal?.[currentMonth] || 5).bg, getDemandColor(SEASONAL_MODEL[r.category]?.seasonal?.[currentMonth] || 5).text)}>{r.category === 'Uncategorized' ? r.vertical : r.category}</span></td>
                 <td style={{...S.td, textAlign: 'right', fontFamily: 'monospace'}}>{fmt(r.sessions)}</td>
                 <td style={{...S.td, textAlign: 'right', fontFamily: 'monospace'}}>{fmt(r.clicks)}</td>
                 <td style={{...S.td, textAlign: 'right', fontFamily: 'monospace'}}>{fmtPct(r.clickRate)}</td>
-                <td style={{...S.td, textAlign: 'right', fontFamily: 'monospace'}}>{fmtDollars(r.salesGross)}</td>
                 <td style={{...S.td, textAlign: 'right', fontFamily: 'monospace', color: r.commGross > 0 ? '#34d399' : 'rgba(229,231,235,0.3)'}}>{fmtDollars(r.commGross)}</td>
+                <td style={{...S.td, textAlign: 'right', fontFamily: 'monospace'}}>{r.rpm ? '$' + r.rpm.toFixed(2) : (r.sessions > 0 ? '$' + (r.commGross / r.sessions * 1000).toFixed(2) : '-')}</td>
               </tr>
             ))}
           </tbody>
         </table>
+        {sortedPerf.length > showLimit && (
+          <div style={{ textAlign: 'center', padding: 16 }}>
+            <button style={S.button} onClick={() => setShowLimit(prev => prev + 100)}>Show more ({sortedPerf.length - showLimit} remaining)</button>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -1192,23 +1360,34 @@ export default function PSCommercePlanner() {
 
       {trendsCSV && trendsCSV.length > 0 && (
         <div style={S.card}>
-          <div style={S.cardTitle}>Trends vs. Seasonal Model</div>
+          <div style={S.cardTitle}>Trends vs. Seasonal Model ({trendsCSV.length} keywords)</div>
+          <div style={{ fontSize: 12, color: 'rgba(229,231,235,0.5)', marginBottom: 12 }}>
+            Uploaded: {trendsTimestamp ? new Date(trendsTimestamp).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'unknown'}
+          </div>
           <table style={S.table}>
             <thead>
               <tr>
-                <th style={S.th}>Search Term</th>
-                <th style={S.th}>Matched Category</th>
-                <th style={{...S.th, textAlign: 'right'}}>Trend Value</th>
+                <th style={S.th}>Keyword</th>
+                <th style={S.th}>Category</th>
+                <th style={{...S.th, textAlign: 'right'}}>Current</th>
+                <th style={{...S.th, textAlign: 'right'}}>4wk Avg</th>
+                <th style={{...S.th, textAlign: 'right'}}>12wk Avg</th>
                 <th style={{...S.th, textAlign: 'right'}}>Expected</th>
-                <th style={S.th}>Status</th>
+                <th style={S.th}>Trend</th>
+                <th style={S.th}>vs. Seasonal</th>
               </tr>
             </thead>
             <tbody>
-              {trendsCSV.slice(0, 50).map((row, i) => {
-                const keys = Object.keys(row);
-                const term = row[keys[0]] || '';
-                const value = parseInt(row[keys[1]]) || 0;
-                // Try to match against seasonal model
+              {trendsCSV.slice(0, 60).map((row, i) => {
+                // Support bookmarklet format: Keyword,Category,Current,4wk_Avg,12wk_Avg,Trend
+                const term = row['Keyword'] || row[Object.keys(row)[0]] || '';
+                const csvCategory = row['Category'] || '';
+                const current = parseInt(row['Current']) || parseInt(row[Object.keys(row)[2]]) || 0;
+                const avg4 = parseFloat(row['4wk_Avg']) || 0;
+                const avg12 = parseFloat(row['12wk_Avg']) || 0;
+                const csvTrend = row['Trend'] || '';
+
+                // Match against seasonal model
                 let matched = null;
                 for (const [cat, data] of Object.entries(SEASONAL_MODEL)) {
                   if (data.keywords.some(kw => term.toLowerCase().includes(kw) || kw.includes(term.toLowerCase()))) {
@@ -1217,19 +1396,26 @@ export default function PSCommercePlanner() {
                   }
                 }
                 const expected = matched ? matched.expected : 50;
-                const ratio = expected > 0 ? value / expected : 1;
-                let status = 'On track';
-                let statusColor = '#fbbf24';
-                if (ratio > 1.5) { status = 'Above seasonal'; statusColor = '#34d399'; }
-                else if (ratio < 0.5) { status = 'Below seasonal'; statusColor = '#ef4444'; }
+                const ratio = expected > 0 ? current / expected : 1;
+                let vsStatus = 'On track';
+                let vsColor = '#fbbf24';
+                if (ratio > 1.5) { vsStatus = 'Hot'; vsColor = '#34d399'; }
+                else if (ratio > 1.15) { vsStatus = 'Above'; vsColor = '#34d399'; }
+                else if (ratio < 0.5) { vsStatus = 'Cold'; vsColor = '#ef4444'; }
+                else if (ratio < 0.85) { vsStatus = 'Below'; vsColor = '#ef4444'; }
+
+                const trendColor = csvTrend === 'Rising' ? '#34d399' : csvTrend === 'Falling' ? '#ef4444' : '#fbbf24';
 
                 return (
                   <tr key={i}>
                     <td style={S.td}>{term}</td>
-                    <td style={S.td}>{matched ? matched.cat : <span style={{ color: 'rgba(229,231,235,0.3)' }}>Unmatched</span>}</td>
-                    <td style={{...S.td, textAlign: 'right', fontFamily: 'monospace'}}>{value}</td>
+                    <td style={S.td}>{matched ? matched.cat : (csvCategory || <span style={{ color: 'rgba(229,231,235,0.3)' }}>—</span>)}</td>
+                    <td style={{...S.td, textAlign: 'right', fontFamily: 'monospace', fontWeight: 600}}>{current}</td>
+                    <td style={{...S.td, textAlign: 'right', fontFamily: 'monospace', color: 'rgba(229,231,235,0.5)'}}>{avg4 ? avg4.toFixed(0) : '-'}</td>
+                    <td style={{...S.td, textAlign: 'right', fontFamily: 'monospace', color: 'rgba(229,231,235,0.5)'}}>{avg12 ? avg12.toFixed(0) : '-'}</td>
                     <td style={{...S.td, textAlign: 'right', fontFamily: 'monospace'}}>{expected}</td>
-                    <td style={S.td}><span style={S.badge(statusColor + '22', statusColor)}>{status}</span></td>
+                    <td style={S.td}><span style={S.badge(trendColor + '22', trendColor)}>{csvTrend || '-'}</span></td>
+                    <td style={S.td}><span style={S.badge(vsColor + '22', vsColor)}>{vsStatus}</span></td>
                   </tr>
                 );
               })}
@@ -1345,7 +1531,7 @@ export default function PSCommercePlanner() {
     <div style={S.root}>
       <div style={S.header}>
         <div style={S.title}>PopSci Commerce Planner</div>
-        <div style={S.subtitle}>Commerce coverage intelligence — {MONTH_NAMES[currentMonth]} {now.getFullYear()} — {totals.articles} articles tracked — Data: {perfDataTimestamp ? new Date(perfDataTimestamp).toLocaleDateString() : 'default'}</div>
+        <div style={S.subtitle}>Commerce coverage intelligence — {MONTH_NAMES[currentMonth]} {now.getFullYear()} — {totals.articles.toLocaleString()} articles tracked{siteFilter !== 'All' ? ` (${siteFilter})` : ''} — Data: {perfDataTimestamp ? new Date(perfDataTimestamp).toLocaleDateString() : 'default'}</div>
         <div style={S.tabs}>
           {TABS.map(t => (
             <button key={t.id} style={S.tab(activeTab === t.id)} onClick={() => setActiveTab(t.id)}>{t.label}</button>
