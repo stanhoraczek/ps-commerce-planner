@@ -469,6 +469,18 @@ const classifyPage = (page) => {
   return { category: "Uncategorized", vertical: "Other" };
 };
 
+// Normalize a page URL or path to a consistent key for merging across CSV formats
+// "/gear/some-article/" and "https://www.popsci.com/gear/some-article" both become "/gear/some-article"
+const normalizePageKey = (page) => {
+  if (!page) return '';
+  let path = page;
+  try {
+    const url = new URL(page);
+    path = url.pathname;
+  } catch { /* already a relative path */ }
+  return path.replace(/\/+$/, '').toLowerCase();
+};
+
 const fmt = (n) => n >= 1000 ? `${(n/1000).toFixed(1)}k` : String(n);
 const fmtDollars = (n) => n === 0 ? '$0' : `$${n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
 const fmtPct = (n) => `${(n * 100).toFixed(1)}%`;
@@ -718,6 +730,15 @@ export default function PSCommercePlanner() {
     }), { sessions: 0, clicks: 0, salesGross: 0, commGross: 0, articles: 0 });
   }, [siteFiltered]);
 
+  // ---- Detect which data fields are available to adapt labels ----
+  const dataHas = useMemo(() => {
+    const hasSales = siteFiltered.some(r => r.salesGross > 0);
+    const hasRpm = siteFiltered.some(r => r.rpm > 0);
+    const hasAov = siteFiltered.some(r => r.aov > 0);
+    const hasTags = siteFiltered.some(r => r.tags && r.tags.length > 0);
+    return { sales: hasSales, rpm: hasRpm, aov: hasAov, tags: hasTags };
+  }, [siteFiltered]);
+
   // ---- Recommendations: Cover Now (high seasonal demand) ----
   const coverNow = useMemo(() => {
     const recs = [];
@@ -823,22 +844,22 @@ export default function PSCommercePlanner() {
   }, [siteFiltered]);
 
   // ---- Handle new performance CSV upload ----
-  // Supports both old format (Sessions, Sales Gross, Commissions Gross, AOV)
-  // and new expanded format (Pageviews, Clicks, CTR, Earnings, RPM, EPC, Page last modified, Tags)
+  // Supports both formats and MERGES: each article appears once, most recent upload wins.
+  // Format A (commerce): Page (relative path), Sessions, Clicks, Sales Gross, Commissions Gross, AOV
+  // Format B (network):  Page (full URL), Pageviews, Clicks, CTR, Earnings, RPM, EPC, Page last modified, Tags
   const handlePerfUpload = (data) => {
     const parseMoney = (v) => { if (!v) return 0; return parseFloat(String(v).replace(/[$,]/g, '')) || 0; };
     const parseNum = (v) => { if (!v) return 0; return parseInt(String(v).replace(/,/g, '')) || 0; };
     const parseFloat2 = (v) => { if (!v) return 0; return parseFloat(String(v).replace(/,/g, '')) || 0; };
 
-    // Detect format by checking for new column names
-    const hasNewFormat = data[0] && ('Pageviews' in data[0] || 'Earnings' in data[0] || 'RPM' in data[0]);
+    // Detect format by checking for column names unique to each report
+    const isNetworkFormat = data[0] && ('Pageviews' in data[0] || 'Earnings' in data[0] || 'RPM' in data[0]);
 
-    const parsed = data.map((row, i) => {
-      if (hasNewFormat) {
-        // New expanded format: Page,Pageviews,Clicks,CTR,Earnings,RPM,EPC,Page last modified,Tags
+    // Parse the incoming rows
+    const incoming = data.map((row, i) => {
+      if (isNetworkFormat) {
         const page = row['Page'] || '';
         return {
-          rank: i + 1,
           page: page,
           published: row['Page last modified'] || '',
           sessions: parseNum(row['Pageviews']),
@@ -850,28 +871,57 @@ export default function PSCommercePlanner() {
           rpm: parseFloat2(row['RPM']),
           epc: parseFloat2(row['EPC']),
           tags: row['Tags'] || '',
-          site: (() => { try { return new URL(page).hostname.replace('www.', ''); } catch { return 'unknown'; } })()
+          site: (() => { try { return new URL(page).hostname.replace('www.', ''); } catch { return 'popsci.com'; } })(),
+          _source: 'network'
         };
       } else {
-        // Old format: Page, Published Date, Sessions, Clicks, Sales Gross, Commissions Gross, AOV
+        const rawPage = row['Page'] || row['page'] || '';
+        // Normalize relative paths to full URLs so classification works
+        const page = rawPage.startsWith('http') ? rawPage : `https://www.popsci.com${rawPage.startsWith('/') ? '' : '/'}${rawPage}`;
         return {
-          rank: i + 1,
-          page: row['Page'] || row['page'] || '',
+          page: page,
           published: row['Published Date'] || row['published'] || '',
           sessions: parseNum(row['Sessions'] || row['sessions']),
           clicks: parseNum(row['Clicks'] || row['clicks']),
           salesGross: parseMoney(row['Sales Gross'] || row['sales_gross']),
           commGross: parseMoney(row['Commissions Gross'] || row['commissions_gross']),
           aov: parseMoney(row['AOV'] || row['aov']),
+          ctr: 0,
+          rpm: 0,
+          epc: 0,
           tags: '',
-          site: 'popsci.com'
+          site: 'popsci.com',
+          _source: 'commerce'
         };
       }
-    }).filter(r => r.page && r.page.startsWith('http'));
-    if (parsed.length > 0) {
-      setPerfData(parsed);
-      setPerfDataTimestamp(new Date().toISOString());
-    }
+    }).filter(r => r.page && (r.page.startsWith('http') || r.page.startsWith('/')));
+
+    if (incoming.length === 0) return;
+
+    // Build a map of existing data keyed by normalized path
+    const existingMap = new Map();
+    perfData.forEach(r => {
+      const key = normalizePageKey(r.page);
+      if (key) existingMap.set(key, r);
+    });
+
+    // Overwrite existing entries with incoming data (most recent upload wins per article)
+    const incomingKeys = new Set();
+    incoming.forEach(r => {
+      const key = normalizePageKey(r.page);
+      if (key) {
+        incomingKeys.add(key);
+        existingMap.set(key, r);
+      }
+    });
+
+    // Convert map back to array, re-rank by sessions descending
+    const merged = Array.from(existingMap.values())
+      .sort((a, b) => b.sessions - a.sessions)
+      .map((r, i) => ({ ...r, rank: i + 1 }));
+
+    setPerfData(merged);
+    setPerfDataTimestamp(new Date().toISOString());
   };
 
   // ---- Styles ----
@@ -931,11 +981,17 @@ export default function PSCommercePlanner() {
       <div style={S.metricRow}>
         <div style={S.metric('#34d399')}>
           <div style={S.metricValue('#34d399')}>{fmtDollars(totals.commGross)}</div>
-          <div style={S.metricLabel}>Total Earnings</div>
+          <div style={S.metricLabel}>{dataHas.sales ? 'Total Commissions' : 'Total Earnings'}</div>
         </div>
+        {dataHas.sales && (
+          <div style={S.metric('#22d3ee')}>
+            <div style={S.metricValue('#22d3ee')}>{fmtDollars(totals.salesGross)}</div>
+            <div style={S.metricLabel}>Gross Sales</div>
+          </div>
+        )}
         <div style={S.metric('#60a5fa')}>
           <div style={S.metricValue('#60a5fa')}>{fmt(totals.sessions)}</div>
-          <div style={S.metricLabel}>Total Pageviews</div>
+          <div style={S.metricLabel}>{dataHas.sales ? 'Sessions' : 'Pageviews'}</div>
         </div>
         <div style={S.metric('#a78bfa')}>
           <div style={S.metricValue('#a78bfa')}>{fmt(totals.clicks)}</div>
@@ -1092,9 +1148,10 @@ export default function PSCommercePlanner() {
             {CONTENT_TYPES.map(t => <option key={t} value={t}>{t === 'All' ? 'All Types' : t}</option>)}
           </select>
           <select style={S.select} value={sortBy} onChange={e => setSortBy(e.target.value)}>
-            <option value="sessions">Sort: Pageviews</option>
+            <option value="sessions">Sort: {dataHas.sales ? 'Sessions' : 'Pageviews'}</option>
             <option value="clicks">Sort: Clicks</option>
-            <option value="commission">Sort: Earnings</option>
+            <option value="commission">Sort: {dataHas.sales ? 'Commissions' : 'Earnings'}</option>
+            {dataHas.sales && <option value="sales">Sort: Sales</option>}
             <option value="clickRate">Sort: CTR</option>
             <option value="rpm">Sort: RPM</option>
           </select>
@@ -1104,7 +1161,7 @@ export default function PSCommercePlanner() {
         </div>
       </div>
 
-      <CSVUploader onDataLoaded={handlePerfUpload} label="Upload performance CSV (supports both old and new format)" />
+      <CSVUploader onDataLoaded={handlePerfUpload} label="Upload performance CSV — auto-detects format, merges with existing data" />
 
       <div style={{ marginTop: 16, overflowX: 'auto' }}>
         <table style={S.table}>
@@ -1112,10 +1169,12 @@ export default function PSCommercePlanner() {
             <tr>
               <th style={S.th}>Article</th>
               <th style={S.th}>Category</th>
-              <th style={{...S.th, textAlign: 'right'}}>Pageviews</th>
+              <th style={{...S.th, textAlign: 'right'}}>{dataHas.sales ? 'Sessions' : 'Pageviews'}</th>
               <th style={{...S.th, textAlign: 'right'}}>Clicks</th>
               <th style={{...S.th, textAlign: 'right'}}>CTR</th>
-              <th style={{...S.th, textAlign: 'right'}}>Earnings</th>
+              {dataHas.sales && <th style={{...S.th, textAlign: 'right'}}>Sales</th>}
+              <th style={{...S.th, textAlign: 'right'}}>{dataHas.sales ? 'Commissions' : 'Earnings'}</th>
+              {dataHas.aov && <th style={{...S.th, textAlign: 'right'}}>AOV</th>}
               <th style={{...S.th, textAlign: 'right'}}>RPM</th>
             </tr>
           </thead>
@@ -1134,7 +1193,9 @@ export default function PSCommercePlanner() {
                 <td style={{...S.td, textAlign: 'right', fontFamily: 'monospace'}}>{fmt(r.sessions)}</td>
                 <td style={{...S.td, textAlign: 'right', fontFamily: 'monospace'}}>{fmt(r.clicks)}</td>
                 <td style={{...S.td, textAlign: 'right', fontFamily: 'monospace'}}>{fmtPct(r.clickRate)}</td>
+                {dataHas.sales && <td style={{...S.td, textAlign: 'right', fontFamily: 'monospace', color: r.salesGross > 0 ? '#22d3ee' : 'rgba(229,231,235,0.3)'}}>{fmtDollars(r.salesGross)}</td>}
                 <td style={{...S.td, textAlign: 'right', fontFamily: 'monospace', color: r.commGross > 0 ? '#34d399' : 'rgba(229,231,235,0.3)'}}>{fmtDollars(r.commGross)}</td>
+                {dataHas.aov && <td style={{...S.td, textAlign: 'right', fontFamily: 'monospace'}}>{r.aov ? '$' + r.aov.toFixed(2) : '-'}</td>}
                 <td style={{...S.td, textAlign: 'right', fontFamily: 'monospace'}}>{r.rpm ? '$' + r.rpm.toFixed(2) : (r.sessions > 0 ? '$' + (r.commGross / r.sessions * 1000).toFixed(2) : '-')}</td>
               </tr>
             ))}
