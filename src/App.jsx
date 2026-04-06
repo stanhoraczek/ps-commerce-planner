@@ -251,6 +251,108 @@ const SEASONAL_MODEL = {
     vertical: "Outdoor Sports",
     seasonal: { 0: 7, 1: 6, 2: 7, 3: 8, 4: 9, 5: 8, 6: 7, 7: 7, 8: 8, 9: 9, 10: 6, 11: 5 },
     avgAOV: 140, avgCommRate: 0.05
+  },
+
+  // OFFICE & FURNITURE
+  "Office Chairs & Ergonomics": {
+    keywords: ["office chair", "ergonomic chair", "standing desk", "seat cushion", "kneeling chair", "desk pad"],
+    vertical: "Office & Furniture",
+    seasonal: { 0: 8, 1: 7, 2: 6, 3: 6, 4: 6, 5: 5, 6: 5, 7: 6, 8: 8, 9: 7, 10: 7, 11: 8 },
+    avgAOV: 300, avgCommRate: 0.04
+  },
+  "Recliners & Home Seating": {
+    keywords: ["recliner", "power lift recliner", "swivel recliner", "massage chair"],
+    vertical: "Office & Furniture",
+    seasonal: { 0: 5, 1: 5, 2: 5, 3: 5, 4: 5, 5: 5, 6: 5, 7: 5, 8: 5, 9: 6, 10: 8, 11: 9 },
+    avgAOV: 500, avgCommRate: 0.04
+  },
+
+  // AUTO & VEHICLE
+  "Dash Cams & Car Tech": {
+    keywords: ["dash cam", "car camera", "dashcam", "head unit", "car accessories"],
+    vertical: "Auto & Vehicle",
+    seasonal: { 0: 5, 1: 5, 2: 5, 3: 6, 4: 6, 5: 7, 6: 7, 7: 7, 8: 6, 9: 6, 10: 8, 11: 9 },
+    avgAOV: 120, avgCommRate: 0.04
+  },
+  "Jump Starters & Roadside": {
+    keywords: ["jump starter", "portable jump starter", "emergency kit", "roadside kit", "air compressor"],
+    vertical: "Auto & Vehicle",
+    seasonal: { 0: 5, 1: 5, 2: 5, 3: 5, 4: 5, 5: 6, 6: 6, 7: 6, 8: 5, 9: 5, 10: 7, 11: 9 },
+    avgAOV: 80, avgCommRate: 0.05
+  },
+  "Garage & Home Maintenance": {
+    keywords: ["garage door opener", "garage heater", "motion sensor light", "attic antenna"],
+    vertical: "Auto & Vehicle",
+    seasonal: { 0: 5, 1: 5, 2: 6, 3: 7, 4: 8, 5: 8, 6: 7, 7: 7, 8: 7, 9: 7, 10: 6, 11: 6 },
+    avgAOV: 200, avgCommRate: 0.04
+  },
+
+  // HOBBY & MAKER
+  "Drones": {
+    keywords: ["drone", "dji", "camera drone", "fpv drone"],
+    vertical: "3D Printing & Maker",
+    seasonal: { 0: 5, 1: 4, 2: 5, 3: 6, 4: 7, 5: 7, 6: 7, 7: 7, 8: 6, 9: 6, 10: 8, 11: 10 },
+    avgAOV: 400, avgCommRate: 0.03
+  },
+  "Science & Education": {
+    keywords: ["telescope", "microscope", "metal detector", "arduino", "lego", "marble run"],
+    vertical: "3D Printing & Maker",
+    seasonal: { 0: 5, 1: 4, 2: 4, 3: 5, 4: 5, 5: 5, 6: 5, 7: 5, 8: 6, 9: 6, 10: 8, 11: 10 },
+    avgAOV: 100, avgCommRate: 0.04
+  },
+
+  // HOME CLIMATE
+  "Dehumidifiers & Air Quality": {
+    keywords: ["dehumidifier", "air quality monitor", "crawl space", "mold"],
+    vertical: "Home & Kitchen",
+    seasonal: { 0: 3, 1: 3, 2: 5, 3: 7, 4: 8, 5: 9, 6: 9, 7: 8, 8: 7, 9: 5, 10: 3, 11: 3 },
+    avgAOV: 200, avgCommRate: 0.04
+  },
+  "Water Heaters & Plumbing": {
+    keywords: ["tankless water heater", "water heater", "whole house filter"],
+    vertical: "Home & Kitchen",
+    seasonal: { 0: 6, 1: 6, 2: 6, 3: 6, 4: 6, 5: 5, 6: 5, 7: 5, 8: 6, 9: 7, 10: 7, 11: 7 },
+    avgAOV: 400, avgCommRate: 0.04
+  },
+  "Outdoor Cooling & Fans": {
+    keywords: ["misting fan", "outdoor fan", "portable fan", "desk fan"],
+    vertical: "Home & Kitchen",
+    seasonal: { 0: 1, 1: 2, 2: 3, 3: 5, 4: 7, 5: 9, 6: 10, 7: 10, 8: 7, 9: 4, 10: 2, 11: 1 },
+    avgAOV: 80, avgCommRate: 0.05
+  },
+
+  // CAMERAS & PRINTERS
+  "Cameras & Photography": {
+    keywords: ["camera", "point and shoot", "canon", "nikon", "camera deals"],
+    vertical: "Cameras & Printers",
+    seasonal: { 0: 5, 1: 5, 2: 5, 3: 5, 4: 5, 5: 6, 6: 7, 7: 7, 8: 6, 9: 6, 10: 8, 11: 10 },
+    avgAOV: 500, avgCommRate: 0.03
+  },
+  "Printers": {
+    keywords: ["portable printer", "ink tank printer", "airprint printer", "printer deals"],
+    vertical: "Cameras & Printers",
+    seasonal: { 0: 7, 1: 6, 2: 5, 3: 5, 4: 5, 5: 5, 6: 5, 7: 7, 8: 9, 9: 7, 10: 7, 11: 8 },
+    avgAOV: 150, avgCommRate: 0.04
+  },
+
+  // ADDITIONAL LIFESTYLE
+  "Sewing & Crafts": {
+    keywords: ["sewing machine", "brother sewing", "craft supplies", "art supply"],
+    vertical: "Lifestyle",
+    seasonal: { 0: 6, 1: 5, 2: 5, 3: 5, 4: 5, 5: 5, 6: 5, 7: 5, 8: 7, 9: 8, 10: 9, 11: 10 },
+    avgAOV: 200, avgCommRate: 0.04
+  },
+  "Birding & Nature": {
+    keywords: ["bird feeder", "birding", "bird watching", "bird bath"],
+    vertical: "Lifestyle",
+    seasonal: { 0: 4, 1: 4, 2: 6, 3: 8, 4: 9, 5: 8, 6: 7, 7: 6, 8: 5, 9: 5, 10: 4, 11: 5 },
+    avgAOV: 50, avgCommRate: 0.05
+  },
+  "Sunglasses & Eyewear": {
+    keywords: ["sunglasses", "best sunglasses", "glasses cleaner", "polarized sunglasses"],
+    vertical: "Lifestyle",
+    seasonal: { 0: 3, 1: 3, 2: 5, 3: 7, 4: 9, 5: 10, 6: 10, 7: 9, 8: 7, 9: 5, 10: 3, 11: 3 },
+    avgAOV: 100, avgCommRate: 0.05
   }
 };
 
@@ -344,6 +446,34 @@ const classifyPage = (page) => {
   if (p.includes('running-shoe') || p.includes('hoka') || p.includes('brooks') || p.includes('on-cloud')) return { category: "Running & Athletic", vertical: "Outdoor Sports" };
   if (p.includes('sauna') || p.includes('fitness') || p.includes('massage')) return { category: "Home Fitness", vertical: "Health & Wellness" };
   if (p.includes('toothbrush') || p.includes('airwrap') || p.includes('high-frequency')) return { category: "Personal Care Tech", vertical: "Health & Wellness" };
+  // New expanded categories
+  if (p.includes('office-chair') || p.includes('standing-desk') || p.includes('seat-cushion') || p.includes('desk-pad') || p.includes('kneeling-chair') || p.includes('ergonomic')) return { category: "Office Chairs & Ergonomics", vertical: "Office & Furniture" };
+  if (p.includes('recliner') || p.includes('massage-chair') || p.includes('lift-chair')) return { category: "Recliners & Home Seating", vertical: "Office & Furniture" };
+  if (p.includes('dash-cam') || p.includes('dashcam') || p.includes('head-unit') || p.includes('car-accessor')) return { category: "Dash Cams & Car Tech", vertical: "Auto & Vehicle" };
+  if (p.includes('jump-starter') || p.includes('roadside') || p.includes('emergency-kit') || p.includes('wolfbox')) return { category: "Jump Starters & Roadside", vertical: "Auto & Vehicle" };
+  if (p.includes('garage-door') || p.includes('garage-heater') || p.includes('motion-sensor') || p.includes('attic-antenna')) return { category: "Garage & Home Maintenance", vertical: "Auto & Vehicle" };
+  if (p.includes('drone') || p.includes('dji') && !p.includes('microphone')) return { category: "Drones", vertical: "3D Printing & Maker" };
+  if (p.includes('telescope') || p.includes('microscope') || p.includes('metal-detector') || p.includes('arduino') || p.includes('lego') || p.includes('marble-run')) return { category: "Science & Education", vertical: "3D Printing & Maker" };
+  if (p.includes('dehumidifier') || p.includes('crawl-space') || p.includes('air-quality-monitor')) return { category: "Dehumidifiers & Air Quality", vertical: "Home & Kitchen" };
+  if (p.includes('water-heater') || p.includes('tankless')) return { category: "Water Heaters & Plumbing", vertical: "Home & Kitchen" };
+  if (p.includes('misting-fan') || p.includes('desk-fan') || p.includes('outdoor-fan') || p.includes('cooktop')) return { category: "Outdoor Cooling & Fans", vertical: "Home & Kitchen" };
+  if (p.includes('camera') && !p.includes('security') && !p.includes('dash') && !p.includes('webcam')) return { category: "Cameras & Photography", vertical: "Cameras & Printers" };
+  if (p.includes('printer') && !p.includes('3d')) return { category: "Printers", vertical: "Cameras & Printers" };
+  if (p.includes('sewing') || p.includes('art-supply') || p.includes('michaels') || p.includes('craft')) return { category: "Sewing & Crafts", vertical: "Lifestyle" };
+  if (p.includes('bird-feeder') || p.includes('bird') && p.includes('feeder')) return { category: "Birding & Nature", vertical: "Lifestyle" };
+  if (p.includes('sunglasses') || p.includes('glasses-cleaner') || p.includes('eyewear')) return { category: "Sunglasses & Eyewear", vertical: "Lifestyle" };
+  if (p.includes('scooter') && !p.includes('spin')) return { category: "E-Scooters & Alt Transport", vertical: "E-Bikes & Mobility" };
+  if (p.includes('smartwatch') || p.includes('garmin') || p.includes('fitness-tracker')) return { category: "Apple Wearables", vertical: "Apple & Tech" };
+  if (p.includes('game-controller') || p.includes('ps5-controller') || p.includes('mobile-game')) return { category: "Gaming Deals", vertical: "Gaming" };
+  if (p.includes('webcam') || p.includes('streaming-device') || p.includes('mouse') || p.includes('keyboard')) return { category: "Monitors", vertical: "Monitors & Displays" };
+  if (p.includes('laptop')) return { category: "MacBooks & iPads", vertical: "Apple & Tech" };
+  if (p.includes('kindle') || p.includes('ereader')) return { category: "MacBooks & iPads", vertical: "Apple & Tech" };
+  if (p.includes('outdoor-tv') || p.includes('antenna')) return { category: "TVs", vertical: "Monitors & Displays" };
+  if (p.includes('lava-lamp') || p.includes('star-projector') || p.includes('photo-blanket')) return { category: "Science & Education", vertical: "3D Printing & Maker" };
+  if (p.includes('neck-massager') || p.includes('heating-pad') || p.includes('electrolyte')) return { category: "Home Fitness", vertical: "Health & Wellness" };
+  if (p.includes('water-bottle') || p.includes('gallon')) return { category: "Home Fitness", vertical: "Health & Wellness" };
+  if (p.includes('battery') || p.includes('rechargeable') || p.includes('power-bank') || p.includes('charging') || p.includes('ugreen')) return { category: "Portable Power Stations", vertical: "Solar & Power" };
+  if (p.includes('chair-mat') || p.includes('monitor-stand') || p.includes('desk')) return { category: "Office Chairs & Ergonomics", vertical: "Office & Furniture" };
   return { category: "Uncategorized", vertical: "Other" };
 };
 
