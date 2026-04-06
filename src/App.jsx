@@ -1,26 +1,76 @@
 import React, { useState, useCallback, useRef, useMemo, useEffect } from 'react';
 
 // ============================================================================
-// LOCALSTORAGE PERSISTENCE HOOK
-// Keeps uploaded data across page refreshes on Netlify
+// INDEXEDDB PERSISTENCE HOOK
+// Uses IndexedDB instead of localStorage — handles 26k+ rows without quota issues
+// IndexedDB is a W3C standard built into every modern browser (Chrome, Firefox, Safari, Edge)
 // ============================================================================
 
-const usePersistedState = (key, initialValue) => {
-  const [state, setState] = useState(() => {
-    try {
-      const stored = localStorage.getItem(key);
-      if (stored) {
-        const parsed = JSON.parse(stored);
-        return parsed;
-      }
-    } catch (e) { /* ignore */ }
-    return initialValue;
-  });
+const DB_NAME = 'ps_commerce_planner';
+const DB_VERSION = 1;
+const STORE_NAME = 'state';
 
+const openDB = () => new Promise((resolve, reject) => {
+  const req = indexedDB.open(DB_NAME, DB_VERSION);
+  req.onupgradeneeded = () => { req.result.createObjectStore(STORE_NAME); };
+  req.onsuccess = () => resolve(req.result);
+  req.onerror = () => reject(req.error);
+});
+
+const idbGet = async (key) => {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(STORE_NAME, 'readonly');
+    const req = tx.objectStore(STORE_NAME).get(key);
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+};
+
+const idbSet = async (key, value) => {
+  const db = await openDB();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(STORE_NAME, 'readwrite');
+    tx.objectStore(STORE_NAME).put(value, key);
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error);
+  });
+};
+
+const usePersistedState = (key, initialValue) => {
+  const [state, setState] = useState(initialValue);
+  const initialized = useRef(false);
+
+  // Load from IndexedDB on mount (also migrate from old localStorage if present)
   useEffect(() => {
-    try {
-      localStorage.setItem(key, JSON.stringify(state));
-    } catch (e) { /* ignore quota errors */ }
+    (async () => {
+      try {
+        // First check IndexedDB
+        const stored = await idbGet(key);
+        if (stored !== undefined) {
+          setState(stored);
+          initialized.current = true;
+          return;
+        }
+        // Migrate from old localStorage if it exists
+        const legacy = localStorage.getItem(key);
+        if (legacy) {
+          const parsed = JSON.parse(legacy);
+          setState(parsed);
+          await idbSet(key, parsed);
+          localStorage.removeItem(key); // clean up old storage
+          initialized.current = true;
+          return;
+        }
+      } catch (e) { /* use default */ }
+      initialized.current = true;
+    })();
+  }, [key]);
+
+  // Save to IndexedDB whenever state changes (skip initial load)
+  useEffect(() => {
+    if (!initialized.current) return;
+    idbSet(key, state).catch(() => { /* ignore write errors */ });
   }, [key, state]);
 
   return [state, setState];
